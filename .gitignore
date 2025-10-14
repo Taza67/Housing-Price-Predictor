@@ -2,3 +2,7 @@
 
 *.csv
 data/**/*.txt 
+
+# Models
+
+models/*
