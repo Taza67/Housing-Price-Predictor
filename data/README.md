@@ -1,6 +1,11 @@
-# Data Links
+# Données
 
-The data can be retrieved at these links:
+## Téléchargement
 
-1. **Geographic Data:** `https://www.data.gouv.fr/datasets/communes-de-france-base-des-codes-postaux/`
-2. **Real Estate Data:** `https://www.data.gouv.fr/datasets/demandes-de-valeurs-foncieres/`
+Les données brutes peuvent être récupérées à ces liens:
+
+1. **Real Estate Data:** `https://www.data.gouv.fr/datasets/search/?q=dvf`
+
+## Utilisation
+
+Le fichier **_csv_** téléchargé doit être placé dans le dossier `data` et nommé `dvf.csv`.
