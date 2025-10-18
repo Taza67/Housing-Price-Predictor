@@ -21,8 +21,8 @@ DATAFRAME_INPUT = "dataframe_input"
 
 # --------------------------------------------- MODEL -------------------------------------------- #
 
-model = joblib.load(XGB_MODEl_PATH)
-test_data = joblib.load(XGB_TEST_SET_PATH)
+model = joblib.load(CAT_MODEl_PATH)
+test_data = joblib.load(CAT_TEST_SET_PATH)
 
 # ------------------------------------------- FUNCTIONS ------------------------------------------ #
 
@@ -31,8 +31,7 @@ def inputs_str(inputs):
 
 	return (
 		f"À la date du ```{inputs[DATA_DATE_COLUMN]}```, pour un bien de type "
-		f"```{inputs[DATA_TYPE_LOCAL_COLUMN]}``` situé à la commune "
-		f"```{inputs[DATA_CODE_COMMUNE_COLUMN]}``` / code postal ```{inputs[DATA_CODE_POSTAL_COLUMN]}``` "
+		f"```{inputs[DATA_TYPE_LOCAL_COLUMN]}``` situé au ```{inputs[DATA_CODE_POSTAL_COLUMN]}``` "
 		f"avec une surface terrain de ```{inputs[DATA_SURFACE_TERRAIN_COLUMN]}``` m2, une surface réelle de "
 		f"```{inputs[DATA_SURFACE_REELLE_COLUMN]}``` m2 et ```{inputs[DATA_NB_PIECES_COLUMN]}``` pièces principales."
 	)
@@ -56,7 +55,8 @@ def dataframe_data_selector():
 
 		selected = grid_input.get("selected_rows", [])
 
-		st.session_state[DATAFRAME_INPUT] = selected
+		if selected is not None:
+			st.session_state[DATAFRAME_INPUT] = selected
 
 # ------------------------------------------------------------------------------------------------ #
 
@@ -110,7 +110,7 @@ def main():
 	if MODEL_TEST_SUBMIT not in st.session_state:
 		st.session_state[MODEL_TEST_SUBMIT] = False
 		st.session_state[MODEL_TEST_INPUTS] = None
-		st.session_state[DATAFRAME_INPUT] = None
+		st.session_state[DATAFRAME_INPUT] = test_data.head(1)
 
 	# UI
 	st.header("Prédicteur du prix immobilier")
