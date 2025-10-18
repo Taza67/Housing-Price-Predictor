@@ -1,0 +1,10 @@
+FROM python:3.13.7
+WORKDIR /home/app
+
+COPY requirements.main.txt ./requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+EXPOSE 8501
+
+CMD [ "streamlit", "run", "main.py", "--browser.serverPort=8501" ]
